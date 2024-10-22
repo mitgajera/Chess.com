@@ -17,9 +17,13 @@ app.set("view engine", "ejs");
 app.use(express.static(path.join(__dirname, "public")));
 
 app.get("/", (req, res) => {
-    res.render("index");
+    res.render("index", { title: "Chess Game" });
 });
 
-server.listen(3000, function() {
+io.on("connection", (uniquesocket) => {
+    console.log("connected");
+});
+
+server.listen(3000, () => {
     console.log("Server is running on 3000 port")
 });
